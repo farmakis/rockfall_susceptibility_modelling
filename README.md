@@ -27,7 +27,7 @@ The training data for the models should represent rock slope areas that include 
   - Compared point cloud: 2023-01-01.pcd
   - Rockfall file: 2022-01-01_to_2023-01-01.txt
   
- Now, you are ready to sample the training examples and the Tensorflow records by executing:
+ Now, you are ready to sample the training examples and create the Tensorflow records by executing:
  <pre><code>python parser.py
  </code></pre>
  <pre><code>python create_dataset.py --box_size ## --points_per_box ### --batch_size ####
