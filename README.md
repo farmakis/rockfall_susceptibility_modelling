@@ -1,1 +1,2 @@
-# rockfall_susceptibility_modelling
+# Rockfall Susceptibility Modelling
+This is a 3D slope-scale rockfall susceptibility modelling (RSM) project using computer vision. 3D geometric learning neural networks are employed for analyzing points clouds to interpret high-resolution digital observations capturing the evolution of a rock slope via long-term, LiDAR-based differencing. The implementation includes the [PointNet++](https://arxiv.org/abs/1612.00593), [PointCNN](https://arxiv.org/abs/1801.07791), and [DGCNN](https://arxiv.org/abs/1801.07829) modules. Detailed applications of the models and analysis results on real rockfall monitoring cases are demonstrated in the associated research [paper].
