@@ -23,13 +23,31 @@ The training data for the models should represent rock slope areas that include 
 
   # <sub><sub>Naming convention
   For every change detection analysis, for instance, between January 1st, 2022 and January 1st, 2023, both the raw point clouds and the resulted rockfall file should be named after the dates, as follows:
-  - Reference point cloud: 2022-01-01.pcd
-  - Compared point cloud: 2023-01-01.pcd
-  - Rockfall file: 2022-01-01_to_2023-01-01.txt
+  - **Reference point cloud:** 2022-01-01.pcd
+  - **Compared point cloud:** 2023-01-01.pcd
+  - **Rockfall file:** 2022-01-01_to_2023-01-01.txt
   
  Now, you are ready to sample the training examples and create the Tensorflow records by executing:
- <pre><code>python parser.py
- </code></pre>
- <pre><code>python create_dataset.py --box_size ## --points_per_box ### --batch_size ####
- </code></pre>
- where <code>##</code> is the size of each sampling box in meters (default=10), <code>###</code> the number of points to be sampled from each box (default=512), and <code>####</code> the batch size of the dataset (default=16).
+  <pre><code>python parser.py
+  </code></pre>
+  <pre><code>python create_dataset.py --box_size ## --points_per_box ### --batch_size ####
+  </code></pre>
+where <code>##</code> is the size of each sampling box in meters (default=10), <code>###</code> the number of points to be sampled from each box (default=512), and <code>####</code> the batch size of the dataset (default=16).
+
+# <sub>Training
+To train a model with the parsed data, simply run the <code>train.py</code> script with the following arguments:
+  - **model:** string data type that can be either <code>pointnet++</code>, <code>pointcnn</code>, or <code>dgcnn</code>
+  - **epochs:** integer defining the number of training epochs
+  - **batch_size:** intereger defining the size of each batch of data (default=16)
+  - **point_per_box:** integer defining the number of points sampled from each box and MUST be same with <code>create_dataset.py</code> (default=512)
+  - **lr:** float defining the learning rate (default=0.0001)
+  - **logdir:** directory to save the trained models in a folder called <code>logs</code> (default=the selected model name)
+
+Here is an example for training a PointNet++ model for 100 epochs and the default settings:
+  <pre><code>python train.py --model pointnet++ --epochs 100</code></pre>
+
+The weights of every epoch are saved in the <code>logs</code> folder under the subfolder named by the <code>logdir</code> input argument (<code>pointnet++_msg</code> in the example above as it uses the defaults value).
+  
+The training logs can also be viewed by executing:
+<pre><code>tensorboard --logdir=logs</code></pre>
+and navigate to <code>http://localhost:6006/</code>.
