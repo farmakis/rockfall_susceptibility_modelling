@@ -23,9 +23,9 @@ The training data for the models should represent rock slope areas that include 
 
   # <sub><sub>Naming convention
   For every change detection analysis, for instance, between January 1st, 2022 and January 1st, 2023, both the raw point clouds and the resulted rockfall file should be named after the dates, as follows:
-  - Reference point cloud -> 2022-01-01.pcd
-  - Compared point cloud -> 2023-01-01.pcd
-  - Rockfall file -> 2022-01-01_to_2023-01-01.txt
+  - Reference point cloud: 2022-01-01.pcd
+  - Compared point cloud: 2023-01-01.pcd
+  - Rockfall file: 2022-01-01_to_2023-01-01.txt
   
  Now, you are ready to sample the training examples and the Tensorflow records by executing:
  <pre><code>python parser.py
