@@ -22,7 +22,7 @@ The training data for the models should represent rock slope areas that include 
   4) Paste the <code>.txt</code> files of the rockfall points and the cluster IDs in the <code>rockfalls</code> folder created in (2).
 
   # <sub><sub>Naming convention
-  For every change detection analysis, for instance, between January 1st, 2022 and January 1st, 2023, both the raw point cloud and the resulted rockfall file should be named after the dates, as follows:
+  For every change detection analysis, for instance, between January 1st, 2022 and January 1st, 2023, both the raw point clouds and the resulted rockfall file should be named after the dates, as follows:
   - Reference point cloud -> 2022-01-01.pcd
   - Compared point cloud -> 2023-01-01.pcd
   - Rockfall file -> 2022-01-01_to_2023-01-01.txt
