@@ -30,6 +30,7 @@ The training data for the models should represent rock slope areas that include 
  Now, you are ready to sample the training examples and create the Tensorflow records by executing:
   <pre><code>python parser.py
   </code></pre>
+  
   <pre><code>python create_dataset.py --box_size ## --points_per_box ### --batch_size ####
   </code></pre>
 where <code>##</code> is the size of each sampling box in meters (default=10), <code>###</code> the number of points to be sampled from each box (default=512), and <code>####</code> the batch size of the dataset (default=16).
