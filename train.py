@@ -32,9 +32,9 @@ args = parser.parse_args()
 def train(net):
 
     if args.logdir:
-        logdir = args.dataset + "_" + args.model + "_" + args.logdir
+        logdir = args.model + "_" + args.logdir
     else:
-        logdir = args.dataset + "_" + args.model
+        logdir = args.model
 
     if net == 'pointnet++':
         from models.pointnet import PointNet
