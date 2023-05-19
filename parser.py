@@ -10,21 +10,7 @@ import argparse
 from progress.bar import Bar
 
 from util.point_cloud_util import write_labels, compute_normals
-
-
-# Global arg collections
-parser = argparse.ArgumentParser()
-parser.add_argument("--dataset", type=str, default='wcw')
-
-args = parser.parse_args()
-
-if args.dataset == "mile109":
-    from dataset.mile109_dataset import get_test_files
-elif args.dataset == "wcw":
-    from dataset.wcw_dataset import get_test_files
-elif args.dataset == "marsden":
-    from dataset.marsden_dataset import get_test_files
-
+from dataset.dataset import get_test_files
 
 def point_cloud_txt_to_pcd(txt):
     # txt: x y z _ _ _ _
@@ -98,13 +84,12 @@ def create_label_file(model, rockfalls):
 
 if __name__ == "__main__":
 
-    dir = "/media/farmakis/Data/Rockfall_Susceptibility_Semantic_Segmentation/" + args.dataset
-    model_dir = os.path.join(dir, "models")
-    rockfall_dir = os.path.join(dir, "rockfalls")
+    model_dir = "data/models"
+    rockfall_dir = "data/rockfalls"
 
     current_dir = os.getcwd()
     dataset_dir = os.path.join(current_dir, "dataset")
-    raw_dir = os.path.join(dataset_dir, args.dataset)
+    raw_dir = os.path.join(dataset_dir, "parsed")
     if not os.path.exists(raw_dir):
         os.makedirs(raw_dir)
 
