@@ -18,8 +18,7 @@ tf.random.set_seed(1234)
 
 # Global arg collections
 parser = argparse.ArgumentParser()
-parser.add_argument("--model", type=str, default="dgcnn")
-parser.add_argument("--dataset", type=str, default="mile109")
+parser.add_argument("--model", type=str, default="pointnet++")
 parser.add_argument("--classes", type=int, default=2)
 parser.add_argument("--logdir", type=str)
 parser.add_argument("--batch_size", type=int, default=16)
@@ -50,9 +49,9 @@ def train(net):
         model = DGCNN(batch_size=args.batch_size, num_classes=args.classes,
                       num_points=args.points_per_box)
 
-    train_ds = load_dataset('dataset/'+args.dataset+'_train.tfrecord',
+    train_ds = load_dataset('dataset/train.tfrecord',
                             args.batch_size, args.points_per_box, args.classes)
-    dev_ds = load_dataset('dataset/'+args.dataset+'_dev.tfrecord',
+    dev_ds = load_dataset('dataset/dev.tfrecord',
                           args.batch_size, args.points_per_box, args.classes)
 
     callbacks = [
