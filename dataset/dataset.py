@@ -7,39 +7,6 @@ import tensorflow as tf
 import util.provider as provider
 from util.point_cloud_util import load_labels
 
-#Random split
-# file_prefixes = [
-#     "2013-11-28",
-#     "2014-06-04",
-#     "2014-09-03",
-#     "2014-09-13",
-#     "2014-11-10",
-#     "2015-02-22",
-#     "2015-04-03",
-#     "2015-08-23",
-#     "2015-10-22",
-#     "2016-02-16",
-#     "2016-07-25",
-#     "2017-04-08",
-#     "2017-09-04",
-#     "2018-04-21",
-#     "2018-06-27",
-#     "2014-11-04",
-#     "2015-06-11",
-#     "2016-10-12",
-#     "2018-05-31",
-#     "2015-03-28",
-#     "2016-05-07",
-#     "2017-05-23",
-#     "2018-08-02"
-# ]
-#
-# split = random.sample(range(len(file_prefixes)), int(np.round(len(file_prefixes)*0.6)))
-#
-# train_file_prefixes = [file_prefixes[i] for i in split]
-# dev_file_prefixes = [file_prefixes[i] for i in range(len(file_prefixes)) if not i in split]
-# test_file_prefixes = ["2018-09-24"]
-
 
 train_file_prefixes = [
     "2013-11-28",
@@ -89,7 +56,7 @@ def get_test_files():
     return test_file_prefixes
 
 
-class Mile109FileData:
+class FileData:
     def __init__(
             self, file_path_without_ext, has_labels, use_normals, box_size_x, box_size_y, num_classes
     ):
@@ -246,7 +213,7 @@ class Mile109FileData:
         )
 
 
-class Mile109Dataset:
+class Dataset:
     def __init__(self, num_points_per_sample, split, use_normals, has_labels, box_size_x, box_size_y, path):
         """Create a dataset holder
         num_points_per_sample (int): Defaults to 8192. The number of point per sample
@@ -282,7 +249,7 @@ class Mile109Dataset:
             if not has_labels:
                 file_prefix = file_prefix + "_full"
             file_path_without_ext = os.path.join(self.path, file_prefix)
-            file_data = Mile109FileData(
+            file_data = FileData(
                 file_path_without_ext=file_path_without_ext,
                 use_normals=self.use_normals,
                 has_labels=self.has_labels,
