@@ -15,12 +15,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import numpy as np
 import tensorflow as tf
 
-# from dataset.semantic_dataset import SemanticDataset
 tf.random.set_seed(1234)
 
 # Global arg collections
 parser = argparse.ArgumentParser()
-parser.add_argument("--dataset", type=str, required=True, default='wcw')
 parser.add_argument("--box_size", type=int, default=10)
 parser.add_argument("--points_per_box", type=int, default=512)
 parser.add_argument("--batch_size", type=int, default=16)
@@ -28,14 +26,9 @@ parser.add_argument("--batch_size", type=int, default=16)
 args = parser.parse_args()
 
 # Import dataset
-path = 'dataset/' + args.dataset + "/"
+path = 'dataset/parsed/'
 
-if args.dataset == "mile109":
-    from dataset.mile109_dataset import Mile109Dataset as Dataset
-elif args.dataset == "wcw":
-    from dataset.wcw_dataset import WCWDataset as Dataset
-elif args.dataset == "marsden":
-    from dataset.marsden_dataset import MarsdenDataset as Dataset
+from dataset.dataset import Dataset
 
 # Import dataset
 TRAIN_DATASET = Dataset(
@@ -148,7 +141,7 @@ def parser():
 
     stacker, stack_train, stack_dev = stack_data()
 
-    with tf.io.TFRecordWriter('dataset/'+args.dataset+'_train.tfrecord') as writer:
+    with tf.io.TFRecordWriter('dataset/train.tfrecord') as writer:
         print('::: Parsing train dataset')
         num_batches = TRAIN_DATASET.get_num_batches(args.batch_size)
         for batch_idx in range(num_batches):
@@ -157,7 +150,7 @@ def parser():
                 tf_example = pcloud_example(batch_data[f], batch_labels[f])
                 writer.write(tf_example.SerializeToString())
 
-    with tf.io.TFRecordWriter('dataset/'+args.dataset+'_dev.tfrecord') as writer:
+    with tf.io.TFRecordWriter('dataset/dev.tfrecord') as writer:
         print('::: Parsing dev dataset')
         num_batches = DEV_DATASET.get_num_batches(args.batch_size)
         for batch_idx in range(num_batches):
@@ -166,7 +159,7 @@ def parser():
                 tf_example = pcloud_example(batch_data[f], batch_labels[f])
                 writer.write(tf_example.SerializeToString())
 
-    with tf.io.TFRecordWriter('dataset/'+args.dataset+'_test.tfrecord') as writer:
+    with tf.io.TFRecordWriter('dataset/test.tfrecord') as writer:
         print('::: Parsing test dataset')
         num_batches = TEST_DATASET.get_num_batches(args.batch_size)
         for batch_idx in range(num_batches):
