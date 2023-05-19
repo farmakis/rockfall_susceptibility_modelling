@@ -80,7 +80,7 @@ def predict(net):
         from sklearn.metrics import roc_curve, auc
         import matplotlib.pyplot as plt
 
-        dataset = load_dataset('dataset/' + args.dataset + '_test.tfrecord',
+        dataset = load_dataset('dataset/test.tfrecord',
                                args.batch_size, args.points_per_box, args.classes)
 
         if args.save_eval: points_collector = []
@@ -135,14 +135,8 @@ def predict(net):
 
     else:
         # Import dataset
-        path = 'dataset/' + args.dataset + "/"
-
-        if args.dataset == "mile109":
-            from dataset.mile109_dataset import Mile109Dataset as Dataset
-        elif args.dataset == "wcw":
-            from dataset.wcw_dataset import WCWDataset as Dataset
-        elif args.dataset == "marsden":
-            from dataset.marsden_dataset import MarsdenDataset as Dataset
+        path = 'dataset/parsed/'
+        from dataset.dataset import Dataset
 
         dataset = Dataset(
             num_points_per_sample=args.points_per_box,
