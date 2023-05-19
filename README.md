@@ -8,6 +8,10 @@ The implementations in the associated [paper](https://www.sciencedirect.com/scie
   - tensorflow-gpu 2.2.0
   - cuda 10.1
   
+The following python modules should also be included:
+  - open3d 0.13.0
+  - sklearn
+
 To compile the TensorFlow operations make sure the <code>CUDA_ROOT</code> path in <code>tf_ops/compile_ops.sh</code> points to the correct CUDA installation folder in your machine. Then compile the operations by executing the following commands in the project's directory:
 
 <pre><code>chmod u+x tf_ops/compile_ops.sh
@@ -27,12 +31,16 @@ The training data for the models should represent rock slope areas that include 
   - **Compared point cloud:** 2023-01-01.pcd
   - **Rockfall file:** 2022-01-01_to_2023-01-01.txt
   
+  Then, open the <code>dataset/dataset.py</code> file and modify the <code>train_file_prefixes</code>, <code>dev_file_prefixes</code>, and <code>test_file_prefixes</code> lists to split your models according to which captures you want to be part of the training, development, and test sets, respectively.
+  
 Now, you are ready to sample the training examples and create the Tensorflow records by executing:
 <pre><code>python parser.py
 </code></pre>
 <pre><code>python create_dataset.py --box_size ## --points_per_box ### --batch_size ####
 </code></pre>
 where <code>##</code> is the size of each sampling box in meters (default=10), <code>###</code> the number of points to be sampled from each box (default=512), and <code>####</code> the batch size of the dataset (default=16).
+  
+!!! At this point, paste the full point cloud of the selected test captures into the <code>dataset/parsed</code> folder with a <code>_full</code> ending (e.g., 2022-01-01_full.pcd)
 
 # <sub>Training
 To train a model with the parsed data, simply run the <code>train.py</code> script with the following arguments:
@@ -51,3 +59,22 @@ The weights of every epoch are saved in the <code>logs</code> folder under the s
 The training logs can also be viewed by executing:
 <pre><code>tensorboard --logdir=logs</code></pre>
 and navigate to <code>http://localhost:6006/</code>.
+
+# <sub>Inference
+To infer on the test data, simply run the <code>predict.py</code> script with the following arguments:
+  - **model:** string data type that can be either <code>pointnet++</code>, <code>pointcnn</code>, or <code>dgcnn</code>
+  - **epochs:** integer defining the epoch which's the trained weights will be used to make predictions
+  - **batch_size:** intereger defining the size of each batch of data (default=16)
+  - **box_size:** integer defining the size of each sampling box in meters and MUST be same with <code>create_dataset.py</code> (default=10)
+  - **point_per_box:** integer defining the number of points sampled from each box and MUST be same with <code>create_dataset.py</code> (default=512)
+  - **logdir:** directory to save the trained models in a folder called <code>logs</code> (default=the selected model name)
+  - **evaluate:** boolean defining whether the model will be evaluated on the test set or simply create predictions on the full versions of the test captures.
+  - **save_eval:** boolean defining whether the evaluation scores will be saved. If set to <code>False</code>, the scores are only printed to the terminal. (default=False)
+
+Here is an example for evaluating the performance of the PointNet++ model on the 50th epoch:
+  <pre><code>python predict.py --model pointnet++ --epochs 50 --evaluate True</code></pre>
+  
+Here is an example of using the above trained and evaluated PointNet++ for creating rockfall susceptibility maps on the full test captures:
+  <pre><code>python predict.py --model pointnet++ --epochs 50 --evaluate False</code></pre>
+  
+The predictions are saved in a homonym folder.
