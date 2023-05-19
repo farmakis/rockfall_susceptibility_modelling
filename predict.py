@@ -19,7 +19,6 @@ tf.random.set_seed(1234)
 # Global arg collections
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", type=str, default="pointnet++")
-parser.add_argument("--dataset", type=str, default="mile109")
 parser.add_argument("--logdir", type=str)
 parser.add_argument("--epoch", type=int, default=30)
 parser.add_argument("--evaluate", type=bool, default=False)
@@ -56,9 +55,9 @@ def save_labeled_txt(filename, points, labels):
 def predict(net):
 
     if args.logdir:
-        logdir = args.dataset + "_" + args.model + "_" + args.logdir
+        logdir = args.model + "_" + args.logdir
     else:
-        logdir = args.dataset + "_" + args.model
+        logdir = args.model
 
     if net == 'pointnet++':
         from models.pointnet import PointNet
