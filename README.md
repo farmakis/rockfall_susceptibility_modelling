@@ -1,11 +1,11 @@
 <div align="center">
 
-# 3D ML Rockfall Susceptibility Modelling
+# 3D ML-based Rockfall Susceptibility Modelling
 
 [![python](https://img.shields.io/badge/-Python_3.6+-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![tensorflow](https://img.shields.io/badge/TensorFlow_2.2+-ee4c2c?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
 [![cuda](https://img.shields.io/badge/CUDA_10.1-76b900?logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
-[![open3d](https://img.shields.io/badge/Open3D_0.13.0+-FFFFFF?logo=open3d&logoColor=black)](https://www.open3d.org/)
+[![open3d](https://img.shields.io/badge/Open3D_0.13.0+-000000?logo=open3d&logoColor=white)](https://www.open3d.org/)
 [![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://opensource.org/license/mit)
 
 [//]: # ([![Paper]&#40;https://img.shields.io/badge/paper-arxiv.1001.2234-B31B1B.svg&#41;]&#40;https://www.nature.com/articles/nature14539&#41;)
