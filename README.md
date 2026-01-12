@@ -1,15 +1,12 @@
 <div align="center">
 
-# 3D ML-based Rockfall Susceptibility Modelling
+# 3D ML Rockfall Susceptibility Modelling
 
 [![python](https://img.shields.io/badge/-Python_3.6+-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![tensorflow](https://img.shields.io/badge/TensorFlow_2.2+-ee4c2c?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
-[![cuda](https://img.shields.io/badge/CUDA_10.1-76b900?logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
-[![open3d](https://img.shields.io/badge/Open3D_0.13.0+-000000?logo=open3d&logoColor=white)](https://www.open3d.org/)
+[![open3d](https://img.shields.io/badge/Open3D_0.13.0+-FFFFFF?logo=open3d&logoColor=black)](https://www.open3d.org/)
+[![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/)
 [![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://opensource.org/license/mit)
-
-[//]: # ([![Paper]&#40;https://img.shields.io/badge/paper-arxiv.1001.2234-B31B1B.svg&#41;]&#40;https://www.nature.com/articles/nature14539&#41;)
-[//]: # ([![Conference]&#40;https://img.shields.io/badge/AnyConference-year-4b44ce.svg&#41;]&#40;https://papers.nips.cc/paper/2020&#41;)
 
 
 Official implementation for
@@ -27,31 +24,36 @@ Official implementation for
 
 ## 📌  Description
 
-### Slope-Scale Rockfall Susceptibility Modeling as a 3D Computer Vision Problem 
-
 <p align="center">
-  <img width="80%" src="./media/remotesensing-15-02712-ag.png">
+  <img width="80%" src="./media/teaser.png">
 </p>
 
-This is a 3D slope-scale rockfall susceptibility modelling (RSM) project using computer vision. RSM is approached as a point cloud semantic segmentation (PCSS) problem. 3D geometric learning neural networks are employed for analyzing points clouds to interpret high-resolution digital observations capturing the evolution of a rock slope via long-term, LiDAR-based differencing. The implementation includes the [PointNet++](https://arxiv.org/abs/1612.00593), [PointCNN](https://arxiv.org/abs/1801.07791), and [DGCNN](https://arxiv.org/abs/1801.07829) modules. Detailed applications of the models and analysis results on real rockfall monitoring cases are demonstrated in the associated research [paper].
+**3D ML Rockfall Susceptibility Modelling (RSM)** is an approach to 3D RSM as a point cloud **semantic segmentation (PCSS)** problem. 3D geometric learning neural networks 🤖 are employed for analyzing points clouds to interpret high-resolution digital observations capturing the evolution of a rock slope via long-term, LiDAR-based differencing. The implementation includes the [PointNet++](https://arxiv.org/abs/1612.00593), [PointCNN](https://arxiv.org/abs/1801.07791), and [DGCNN](https://arxiv.org/abs/1801.07829) modules. Detailed applications of the models and analysis results on real rockfall monitoring cases are demonstrated in our [paper](https://www.mdpi.com/2072-4292/15/11/2712) .
 The repository includes components of the TensorFlow 2 layers provided [here](https://github.com/dgriffiths3/pointnet2-tensorflow2) and the TensorFlow operations provided [here](https://github.com/charlesq34/pointnet2/tree/master/tf_ops).
 
+<div align="center">
+  <img width="40%" src="./media/mile109/roc_mile109.png">
+</div>
 
-# <sub>Installation
-The implementations in the associated [paper](https://www.sciencedirect.com/science/article/pii/S0013795222003210) were done in a Ubuntu 18.04 OS with the following setup:
-  - python 3.6
-  - tensorflow-gpu 2.2.0
-  - cuda 10.1
-  
-The following python modules should also be included:
-  - open3d 0.13.0
-  - sklearn
+<br>
 
-To compile the TensorFlow operations make sure the <code>CUDA_ROOT</code> path in <code>tf_ops/compile_ops.sh</code> points to the correct CUDA installation folder in your machine. Then compile the operations by executing the following commands in the project's directory:
+## 💻  Environment requirements
+This project was tested with:
+- Linux OS (Ubuntu 18.04)
+- **64G** RAM
+- NVIDIA GeForce RTX 2070 **8G**
+- CUDA 10.1
+- conda 23.3.1
 
-<pre><code>chmod u+x tf_ops/compile_ops.sh
-tf_ops/compile_ops.sh
-</code></pre>
+<br>
+
+## 🏗  Installation
+Simply run [`install.sh`](install.sh) to install all dependencies in a new 
+conda environment named `3d-ml-rsm`. 
+```bash
+# Creates a conda env named '3d-ml-rsm' env and installs dependencies
+./install.sh
+```
 
 # <sub>Data preparation
 The training data for the models should represent rock slope areas that include both stable and unstable points (points that belong to rockfalls) resulted from point cloud based change detection after de-noising and clustering. Details on the data generation workflow are provided [here](https://www.mdpi.com/2220-9964/10/3/157). When both <code>rockfall</code>  and <code>non_rockfall</code> points are are detected, make sure that the extracted point clouds <code>(.txt)</code> containing the rockfall points, inlude the cluster ID in the last column. Also, the original rock slope models be  saved in <code>.pcd</code> format. Then copy them in the respective folders following the steps below:
