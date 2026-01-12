@@ -5,22 +5,21 @@
 [![python](https://img.shields.io/badge/-Python_3.6+-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![tensorflow](https://img.shields.io/badge/TensorFlow_2.2+-ee4c2c?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
 [![cuda](https://img.shields.io/badge/CUDA_10.1-76b900?logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
-[![open3d](https://img.shields.io/badge/Open3D_0.13.0+-00a8cc?logoColor=white)](https://www.open3d.org/)
+[![open3d](https://img.shields.io/badge/Open3D_0.13.0+-FFFFFF?logo=open3d&logoColor=black)](https://www.open3d.org/)
 [![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://opensource.org/license/mit)
+
+[//]: # ([![Paper]&#40;https://img.shields.io/badge/paper-arxiv.1001.2234-B31B1B.svg&#41;]&#40;https://www.nature.com/articles/nature14539&#41;)
+[//]: # ([![Conference]&#40;https://img.shields.io/badge/AnyConference-year-4b44ce.svg&#41;]&#40;https://papers.nips.cc/paper/2020&#41;)
 
 
 Official implementation for
 <br>
 <br>
-[_Slope-Scale Rockfall Susceptibility Modeling as a 3D Computer Vision Problem _](https://www.mdpi.com/2072-4292/15/11/2712) (Remote Sensing)
+[_Slope-Scale Rockfall Susceptibility Modeling as a 3D Computer Vision Problem_](https://www.mdpi.com/2072-4292/15/11/2712) (Remote Sensing)
 <br>
-[![mdpi](https://img.shields.io/badge/mdpi-rs15112712-446e34.svg)](https://www.mdpi.com/2072-4292/15/11/2712)
+[![mdpi](https://img.shields.io/badge/MDPI-10.3390/rs15112712-446e34.svg)](https://www.mdpi.com/2072-4292/15/11/2712)
 <!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8042712.svg)](https://doi.org/10.5281/zenodo.8042712)
 [![Project page](https://img.shields.io/badge/Project_page-8A2BE2)](https://drprojects.github.io/superpoint-transformer) -->
-<br>
-<br>
-**If you ❤️ or simply use this project, don't forget to give the repository a ⭐,
-it means a lot to us !**
 <br>
 </div>
 
@@ -31,7 +30,7 @@ it means a lot to us !**
 ### Slope-Scale Rockfall Susceptibility Modeling as a 3D Computer Vision Problem 
 
 <p align="center">
-  <img width="80%" src="./media/teaser_spt.png">
+  <img width="80%" src="./media/remotesensing-15-02712-ag.png">
 </p>
 
 This is a 3D slope-scale rockfall susceptibility modelling (RSM) project using computer vision. RSM is approached as a point cloud semantic segmentation (PCSS) problem. 3D geometric learning neural networks are employed for analyzing points clouds to interpret high-resolution digital observations capturing the evolution of a rock slope via long-term, LiDAR-based differencing. The implementation includes the [PointNet++](https://arxiv.org/abs/1612.00593), [PointCNN](https://arxiv.org/abs/1801.07791), and [DGCNN](https://arxiv.org/abs/1801.07829) modules. Detailed applications of the models and analysis results on real rockfall monitoring cases are demonstrated in the associated research [paper].
